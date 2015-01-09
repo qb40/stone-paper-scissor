@@ -1,5 +1,6 @@
+DECLARE SUB loadBar ()
 '½ ¼ » º ¹ ¸ · ¶ µ ´ ³ ¾ ¿ À Á Â Ã Ä Å Æ Ç È É Ê Ë Ì Í Î Ï Ð Ñ Ò Ó Ô Õ Ö ×
-
+'function declarations
 DECLARE SUB box (s$, x1, y1, x2, y2, c1, c2, c3)
 DECLARE SUB printer (s$, pr, sd)
 DECLARE FUNCTION choice ()
@@ -13,101 +14,62 @@ DECLARE SUB win ()
 
 
 CLS
-box "Loading . . .", 1, 1, 50, 5, 14, 11, 10
+box " Loading . . .", 1, 1, 50, 5, 14, 11, 10
 LOCATE 4, 2
 COLOR 3, 0
-PRINT "Please wait while the game is loading . . ."
+PRINT " Please wait while the game is loading . . ."
 
-
-x1 = 4
-x2 = 76
-s = 1
-FOR k = 1 TO 200
-FOR l = 10 TO 12
-LOCATE l, 1
-PRINT SPC(x1 - 2);
-LOCATE l, x2 + 1
-PRINT SPC(x1 - 2);
-NEXT
-FOR i = x1 TO x2
-COLOR 4
-LOCATE 10, x1
-PRINT "É";
-LOCATE 11, x1
-PRINT "º";
-LOCATE 12, x1
-PRINT "È";
-FOR j = x1 + 1 TO x2 - 1
-LOCATE 10, j
-PRINT "Í";
-LOCATE 11, j
-COLOR 5
-PRINT CHR$(177);
-COLOR 4
-LOCATE 12, j
-PRINT "Í";
-NEXT
-LOCATE 10, x2
-PRINT "»";
-LOCATE 11, x2
-PRINT "º";
-LOCATE 12, x2
-PRINT "¼";
-NEXT
-x1 = x1 + 1 * s
-x2 = x2 - 1 * s
-IF (ABS(x2 - x1) <= 4) THEN s = -1
-IF (ABS(x2 - x1) >= 76) THEN s = 1
-SOUND 21000, .02
-NEXT
+loadBar
 CLS
 
-box "                        Stone-Paper-Scissor Game", 1, 1, 80, 25, 15, 7, 1
-box "Player", 2, 5, 30, 21, 2, 3, 4
-box "Computer", 52, 5, 79, 21, 2, 3, 4
+box SPACE$(24) + "Stone-Paper-Scissor Game", 1, 1, 80, 25, 15, 7, 1
+box " Player", 2, 5, 30, 21, 15, 3, 4
+box " Computer", 52, 5, 79, 21, 15, 3, 4
 
-box "message", 3, 8, 29, 12, 0, 1, 2
-box "message", 53, 8, 78, 12, 0, 1, 2
-box "money", 3, 12, 29, 16, 0, 1, 2
-box "money", 53, 12, 78, 16, 0, 1, 2
-box "choice", 3, 16, 29, 20, 0, 1, 2
-box "choice", 53, 16, 78, 20, 0, 1, 2
+box " message", 3, 8, 29, 12, 7, 1, 2
+box " message", 53, 8, 78, 12, 7, 1, 2
+box " money", 3, 12, 29, 16, 7, 1, 2
+box " money", 53, 12, 78, 16, 7, 1, 2
+box " choice", 3, 16, 29, 20, 7, 1, 2
+box " choice", 53, 16, 78, 20, 7, 1, 2
 
-box "Battle ground", 32, 6, 50, 20, 10, 11, 12
+box " Battle ground", 32, 6, 50, 20, 10, 11, 12
 
-OPEN "i", #1, "money.txt"
-LINE INPUT #1, z$
-CLOSE #1
+'OPEN "i", #1, "money.txt"
+'LINE INPUT #1, z$
+'CLOSE #1
+z$ = "50"
 umon = VAL(z$)
 cmon = VAL(z$)
 
 'contrlos
+SOUND 21000, 20
 printer "1=Stone", 1, 1
-SOUND 21000, 20
+SOUND 21000, 5
 printer "1=Stone", 1, 2
-SOUND 21000, 20
+SOUND 21000, 10
 printer "2=Paper", 1, 1
-SOUND 21000, 20
+SOUND 21000, 5
 printer "2=Paper", 1, 2
-SOUND 21000, 20
+SOUND 21000, 10
 printer "3=Scissor", 1, 1
-SOUND 21000, 20
+SOUND 21000, 5
 printer "3=Scissor", 1, 2
-SOUND 21000, 20
+SOUND 21000, 10
 
 printer STR$(umon) + "$", 2, 1
-SOUND 21000, 20
+SOUND 21000, 5
 printer STR$(cmon) + "$", 2, 2
-SOUND 21000, 20
+SOUND 21000, 10
 
 printer "Ready", 1, 1
-SOUND 21000, 20
+SOUND 21000, 5
 printer "Ready", 1, 2
-SOUND 21000, 20
+SOUND 21000, 10
 printer "Start", 1, 1
-SOUND 21000, 20
+SOUND 21000, 5
 printer "Start", 1, 2
-SOUND 21000, 20
+SOUND 21000, 10
 
 game:
 
@@ -285,7 +247,7 @@ FOR i = 1 TO x2 - x1 - 2
         PRINT "Ì";
 
                 FOR j = 1 TO i
-                SOUND 21000, .03
+                SOUND 21000, .01
                 COLOR c3, 0
                 LOCATE y1, x1 + j
                 PRINT "Í";
@@ -320,7 +282,7 @@ COLOR c3, 0
 
 FOR i = y1 + 3 TO y2
         FOR j = y1 + 3 TO i - 1
-                SOUND 21000, .1
+                SOUND 21000, .03
                 LOCATE j, x1
                 PRINT "º"; SPC(d); "º";
         NEXT
@@ -349,6 +311,51 @@ FOR j = 34 TO 48
 PRINT " ";
 NEXT
 NEXT
+END SUB
+
+SUB loadBar
+
+x1 = 34
+x2 = 46
+s = 1
+FOR k = 1 TO 100
+FOR l = 10 TO 12
+LOCATE l, 1
+PRINT SPC(x1 - 2);
+LOCATE l, x2 + 1
+PRINT SPC(x1 - 2);
+NEXT
+FOR i = x1 TO x2
+COLOR 4
+LOCATE 10, x1
+PRINT "É";
+LOCATE 11, x1
+PRINT "º";
+LOCATE 12, x1
+PRINT "È";
+FOR j = x1 + 1 TO x2 - 1
+LOCATE 10, j
+PRINT "Í";
+LOCATE 11, j
+COLOR 5
+PRINT CHR$(177);
+COLOR 4
+LOCATE 12, j
+PRINT "Í";
+NEXT
+LOCATE 10, x2
+PRINT "»";
+LOCATE 11, x2
+PRINT "º";
+LOCATE 12, x2
+PRINT "¼";
+NEXT
+x1 = x1 + 1 * s
+x2 = x2 - 1 * s
+IF (ABS(x2 - x1) <= 4) THEN s = -1
+IF (ABS(x2 - x1) >= 22) THEN s = 1
+NEXT
+
 END SUB
 
 SUB lose
@@ -440,32 +447,32 @@ SELECT CASE sd
 CASE 1
         SELECT CASE pr
         CASE 1
-        x1 = 4
-        x2 = 28
+        x1 = 5
+        x2 = 27
         y = 11
         CASE 2
-        x1 = 4
-        x2 = 28
+        x1 = 5
+        x2 = 27
         y = 15
         CASE 3
-        x1 = 4
-        x2 = 28
+        x1 = 5
+        x2 = 27
         y = 19
         CASE ELSE
         END SELECT
 CASE 2
         SELECT CASE pr
         CASE 1
-        x1 = 54
-        x2 = 77
+        x1 = 55
+        x2 = 76
         y = 11
         CASE 2
-        x1 = 54
-        x2 = 77
+        x1 = 55
+        x2 = 76
         y = 15
         CASE 3
-        x1 = 54
-        x2 = 77
+        x1 = 55
+        x2 = 76
         y = 19
         CASE ELSE
         END SELECT
@@ -493,7 +500,7 @@ PRINT "Computer";
 SOUND 21000, 20
 clr
 LOCATE 10, 35
-PRINT "You have cheated";
+PRINT "You cheated";
 SOUND 21000, 20
 clr
 LOCATE 10, 35
@@ -501,7 +508,7 @@ PRINT "How do you";
 SOUND 21000, 20
 clr
 LOCATE 10, 35
-PRINT "Dare to do so";
+PRINT "Dare to so";
 SOUND 21000, 20
 clr
 LOCATE 10, 35
@@ -531,7 +538,7 @@ FOR i = y1 TO y2
 LOCATE i, x1
 FOR j = x1 TO x2
 PRINT a$;
-SOUND 21000, .1
+SOUND 21000, .04
 NEXT
 NEXT
 END SUB

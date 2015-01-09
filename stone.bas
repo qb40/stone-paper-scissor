@@ -182,6 +182,7 @@ quit:
 CLS
 PRINT "Credits   :    Subhajit Sahu"
 SOUND 21000, 20
+COLOR 7
 SYSTEM
 
 SUB attack (n, sd)

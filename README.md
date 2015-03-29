@@ -12,8 +12,8 @@ contribute 5$ each. A strike is played by pressing the following keys:
 The winner of the strike gets 10$. In case it is a draw, both get nothing. The game
 continues until player or the cpu has no money. Oh, and these are the rules:
 
-**Stone** beats *Scissor*
-**Paper** beats *Stone*
+**Stone** beats *Scissor*<br/>
+**Paper** beats *Stone*<br/>
 **Scissor** beats *Paper*
 
 

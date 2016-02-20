@@ -1,4 +1,4 @@
-#qb-stone-paper-scissor
+# qb-stone-paper-scissor
 
 **qb-stone-paper-scissor** is the classic stone paper scissor game vs the cpu in dos.
 Intially each player is provided 50$ sum of money. For each strike, the player and cpu
@@ -17,7 +17,7 @@ continues until player or the cpu has no money. Oh, and these are the rules:
 **Scissor** beats *Paper*
 
 
-##demo
+## demo
 
 <img src="/assets/img/0.png" width="70%"><br/>
 <img src="/assets/img/1.png" width="70%"><br/>

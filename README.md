@@ -14,8 +14,7 @@ continues until player or the cpu has no money. Oh, and these are the rules:
 **Paper** beats *Stone*<br/>
 **Scissor** beats *Paper*
 
-
-## demo
+<br>
 
 <img src="https://raw.githubusercontent.com/qb40/stonepaperscissor/gh-pages/0/image/0.png" width="70%"><br/>
 <img src="https://raw.githubusercontent.com/qb40/stonepaperscissor/gh-pages/0/image/1.png" width="70%"><br/>
